@@ -1,13 +1,32 @@
 {
-  "name": "react-webpack-node",
-  "version": "1.2.0",
-  "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
-  "repository": "https://github.com/choonkending/react-webpack-node",
-  "main": "index.js",
+  "name": "test",
+  "version": "1.0.0",
+  "description": "essai react",
   "scripts": {
-    "start": "node ./webpack/devServer.js && node node_modules/open/lib/open.js src/app/index.html"
+    "clean": "rimraf public",
+    "build:webpack": "set NODE_ENV=production && webpack --progress --colors --config ./webpack/webpack.config.prod.js",
+    "build:webpack_unix": "export NODE_ENV=production && webpack --optimize-minimize --progress --colors --config ./webpack/webpack.config.prod.js",
+    "build": "npm run clean && npm run build:webpack",
+    "start": "node ./webpack/devServer.js && node node_modules/open/lib/open.js src/app/index.html",
+    "start-dev": "nodemon ./webpack/devServer.js && node node_modules/open/lib/open.js src/app/index.html",
+    "lint": "eslint src/js",
+    "test": "set NODE_ENV=test && karma start src/test/config/karma.conf.js"
   },
-  "author": "Adrien Guibert",
+  "keywords": [
+    "react",
+    "reactjs",
+    "maboxrh",
+    "hot",
+    "reload",
+    "hmr",
+    "live",
+    "edit",
+    "webpack",
+    "babel",
+    "react-transform"
+  ],
+  "author": "jrateau",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer-loader": "3.1.0",
     "babel": "5.8.23",
@@ -63,7 +82,17 @@
   },
   "dependencies": {
     "alt": "0.17.4",
-    "react": "0.14.1"
-    
+    "axios": "0.7.0",
+    "history": "1.12.6",
+    "jquery": "~2.1.4",
+    "marked": "0.3.5",
+    "react": "0.14.1",
+    "react-bootstrap": "0.27.3",
+    "react-dom": "0.14.1",
+    "react-quill": "0.2.2",
+    "react-router": "1.0.0-rc3",
+    "react-transform": "0.0.3",
+    "bootstrap-sass": "~3.3.5",
+    "font-awesome": "~4.4.0"
   }
 }

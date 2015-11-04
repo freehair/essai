@@ -1,11 +1,12 @@
+
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
 
-//require("bootstrap-sass-loader");
+require("bootstrap-sass-loader");
 //require("font-awesome-webpack");
 
-var appEntryPoint = path.join(__dirname, "..", "src", "app");
+var appEntryPoint = path.join(__dirname, "..", "src", "app", "js", "index");
 var bootstrapSassConfig = path.join(__dirname, '..');
 
 
@@ -15,7 +16,7 @@ module.exports = {
     entry: [
         'webpack-hot-middleware/client',
         "font-awesome-webpack",
-        //"bootstrap-sass!./bootstrap-sass.config.js",
+        "bootstrap-sass!./bootstrap-sass.config.js",
         appEntryPoint
     ],
     context: path.join(__dirname, "..", "src", "app"),
@@ -25,6 +26,7 @@ module.exports = {
         publicPath: '/assets/'
     },
     module: {
+        noParse: /quill.js/,
         preLoaders: [
             {
                 test: /\.js$|\.jsx$/,
