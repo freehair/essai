@@ -1,34 +1,38 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
-var webpackMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('./webpack.config.js');
+var compiler = webpack(config);
 
-require("babel/register");
+// var cors = require('cors');
 
 var app = express();
-var http = require('http');
-var isProduction = process.env.NODE_ENV === 'production';
-var port = isProduction ? process.env.PORT : 3000;
-var publicPath = config.output.publicPath;
 
-// We point to our static assets
-app.use(express.static(publicPath));
+/*
+app.use(cors({
+  headers: ["X-Requested-With"]
+}));
+*/
 
-console.log("__dirname : ",__dirname)
+app.use(express.static(path.join(__dirname, '..', 'src', 'app')));
 
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('/', function(req, res) {
-   res.sendFile(path.join(__dirname, '../src/app/index.html'));
-   //res.send();
+  //res.sendFile(path.join(__dirname, '..', 'src', 'app', 'index.html'));
+  res.send();
 });
 
-/*app.get('*', function(req, res) {
-    res.send('404 - Page Not Found');
-})*/
+app.listen(3000, 'localhost', function(err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-// And run the server
-app.listen(port, function () {
-  console.log('Server running on port ' + port);
+  console.log('Listening at http://localhost:3000');
 });
