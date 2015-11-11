@@ -1,18 +1,22 @@
 // webpack.config.js
 var path = require('path');
 var node_modules = path.resolve(__dirname, '../node_modules');
+//console.log("node_modules :", node_modules);
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+var pathToReactDomMin = path.resolve(node_modules, 'react/lib/ReactDOM');
 
 
 var config = {
-    entry: path.resolve(__dirname, '../src/app/js/app.jsx'),
+    entry: path.resolve(__dirname, '../src/app/js/index.jsx'),
     output: {
         path: path.resolve(__dirname, '../build'),
         filename: 'bundle.js'
     },
     resolve: {
         alias: {
-            'react': pathToReact
+            'react': pathToReact,
+            
+            'react-dom' : pathToReactDomMin
         }
     },
     module: {
@@ -24,7 +28,8 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                loader: "style!css!sass?outputStyle=expanded=includePaths[]=" + node_modules + "/bootstrap-sass/assets/stylesheets/"
+                loader: "style-loader!css-loader!sass-loader?outputStyle=expanded&"+
+                    "includePaths[]=" + node_modules
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf|svg)$/,
