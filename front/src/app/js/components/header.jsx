@@ -6,10 +6,10 @@ import Test from './test.jsx'
 import Test2 from './test2.jsx'
 import { Router, Route, Link } from 'react-router'
 
+import '../../stylesheets/styles.scss';
 
 
-
-export default class Header extends React.Component {
+class Header extends React.Component {
 	render() {
 		return (
 			<Navbar inverse>
@@ -29,8 +29,9 @@ export default class Header extends React.Component {
 			</Navbar>
 		)
 	}
-};
+}
 
 
+export default Header;
 
 

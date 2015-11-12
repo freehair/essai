@@ -1,15 +1,15 @@
 
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom';
 import { Router, Route, Link } from 'react-router'
-import ReactDom from 'react-dom';
+
 import Home from './components/home.jsx';
 import Test from './components/test.jsx';
 import Test2 from './components/test2.jsx';
-import App from './app.jsx';
+import App from './components/app.jsx';
 
 
-render((
+ReactDOM.render((
   	<Router>
     	<Route path="/" component={App}>
     		<Route path="home" component={Home} />
@@ -17,4 +17,4 @@ render((
       		<Route path="test2" component={Test2} />
     	</Route>
   	</Router>
-), document.body)
+), document.getElementById('app'))

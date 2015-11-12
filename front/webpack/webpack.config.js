@@ -8,9 +8,12 @@ var pathToReactDomMin = path.resolve(node_modules, 'react/lib/ReactDOM');
 
 var config = {
     entry: path.resolve(__dirname, '../src/app/js/index.jsx'),
+    context: path.join(__dirname, "..", "src", "app"),
     output: {
         path: path.resolve(__dirname, '../build'),
-        filename: 'bundle.js'
+        pathInfo: true,
+        filename: 'app.js',
+        publicPath: '/assets/'
     },
     resolve: {
         alias: {
@@ -22,7 +25,7 @@ var config = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$|\.jsx$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader?stage=1&optional=runtime'
             },

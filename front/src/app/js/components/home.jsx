@@ -1,6 +1,11 @@
-import React from 'react'
+import React from 'react';
+import connectToStores from 'alt/utils/connectToStores';
  
-export default class Home extends React.Component {
+class Home extends React.Component {
+    
+	/*static getStores() { return null; }
+	static getPropsFromStores() { return null; }*/
+
     render() {
         return (
             <div>
@@ -8,4 +13,6 @@ export default class Home extends React.Component {
             </div>
         );
     }
-};
+}
+
+export default Home;

@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
+import connectToStores from 'alt/utils/connectToStores';
+
+import '../../stylesheets/styles.scss';
+
  
-export default class Test2 extends React.Component {
+class Test2 extends React.Component {
+    
+	/*static getStores() { return null; }
+	static getPropsFromStores() { return null; }*/
+
     render() {
         return (
             <div>
@@ -8,4 +16,6 @@ export default class Test2 extends React.Component {
             </div>
         );
     }
-};
+}
+
+export default Test2;
